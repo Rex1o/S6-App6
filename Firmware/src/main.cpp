@@ -1,18 +1,40 @@
-#include <Arduino.h>
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include "BLEBeaconNotifier.h"
 
-// put function declarations here:
-int myFunction(int, int);
+// === Configuration Wi-Fi ===
+const char* ssid = "EasyAmongUs_24";
+const char* password = "RedPantsAmigo1";
+// WiFiClient wifiClient;
+BLEBeaconNotifier Beacon;
 
+// === Connexion au Wi-Fi ===
+void setup_wifi() {
+  delay(10);
+  Serial.println();
+  Serial.print("Connexion à ");
+  Serial.println(ssid);
+
+  // WiFi.begin(ssid, password);
+
+  // while (WiFi.status() != WL_CONNECTED) {
+  //   delay(500);
+  //   Serial.print(".");
+  // }
+
+  Serial.println("\nWiFi connecté");
+  Serial.print("Adresse IP : ");
+  Serial.println(WiFi.localIP());
+}
+
+// === Setup initial ===
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(115200);
+  setup_wifi();
+  Beacon.setup();
 }
 
+// === Boucle principale ===
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  Beacon.loop();
 }
