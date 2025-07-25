@@ -1,8 +1,8 @@
-
 #pragma once
 #include <string>
 #include <BLEScan.h>
 #include <vector>
+
 
 struct DeviceRequest
 {
@@ -10,6 +10,11 @@ struct DeviceRequest
     BLEAddress address;
 };
 
+struct Entry
+{
+    tm timeinfo;
+    BLEAddress address;
+};
 
 class BLEBeaconNotifier
 {
@@ -23,11 +28,18 @@ private: // BLE services
 // List of current devices
     std::vector<BLEAddress> _currentDevices;
     std::vector<DeviceRequest> _newScanDevices;
+
     void verifyConnectionState();
     BLEScan* _BLEScan;
 public:
+
+    std::vector<Entry> Entries;
+    std::vector<Entry> Exits;
+
     inline BLEBeaconNotifier() {};
-    inline ~BLEBeaconNotifier(){};
+    inline ~BLEBeaconNotifier() {
+        delete _BLEScan;
+    };
     void loop();
     void setup();
     bool isMatchingUUID(const uint8_t* payload, size_t len);
