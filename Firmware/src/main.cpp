@@ -48,6 +48,7 @@ void setup() {
 // === Boucle principale ===
 void loop() {
   Beacon.loop();
+  httpService.loop();
   // Filter by size
   for (size_t i = 0; i < Beacon.Entries.size();) { // Send notifications for entries
     if (httpService.sendEnterPacket(Beacon.Entries[i])) // If packet was successfull to send, remove it from list
@@ -64,4 +65,5 @@ void loop() {
       break;
     }
   }
+
 }

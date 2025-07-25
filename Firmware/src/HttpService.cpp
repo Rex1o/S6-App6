@@ -3,21 +3,27 @@
 #include <BLEAddress.h>
 #include <sstream>
 
-const uint8_t     HttpService::LED_GPIO = GPIO_NUM_5;
+const uint8_t     HttpService::LED_GPIO = GPIO_NUM_25;
 const std::string HttpService::SERVER_IP =  "192.168.0.21:5000";
 std::string HttpService::POST_EXIT_API_ROUTE =  "http://" + SERVER_IP + "/exit";
 std::string HttpService::POST_ENTRY_API_ROUTE =  "http://" + SERVER_IP + "/enter";
 const std::string HttpService::ROOM_ID = "4";
+WebServer HttpService::_server(80);
 
-HttpService::HttpService (WiFiClient& wifiClient) : _wifiClient(wifiClient), _server(80) {
 
+HttpService::HttpService (WiFiClient& wifiClient) : _wifiClient(wifiClient) {
 }
 
 void HttpService::setup() {
+    pinMode(LED_GPIO, OUTPUT);
     _server.on("/on", handleOn);
     _server.on("/off", handleOff);
     _server.begin();
     Serial.println("HTTP server started");
+}
+
+void HttpService::loop(){
+    _server.handleClient();
 }
 
 bool HttpService::sendExitPacket(Entry& entry){
@@ -79,11 +85,13 @@ std::string HttpService::entryToJson(Entry& data) {
 }
 
 void HttpService::handleOn() {
-
-    
+    Serial.println("Admin ON signal received");
     digitalWrite(LED_GPIO, HIGH);
+    _server.send(200,"text/plain", "Success turned on");
 }
 
 void HttpService::handleOff() {
-    digitalWrite(LED_GPIO, HIGH);
+    Serial.println("Admin OFF signal received");
+    digitalWrite(LED_GPIO, LOW);
+    _server.send(200,"text/plain", "Success turned off");
 }

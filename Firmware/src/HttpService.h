@@ -19,6 +19,7 @@ public:
     HttpService(WiFiClient& wifiClient);
     inline ~HttpService() {};
     void setup();
+    void loop();
 
     // returns true if packet is sucessfully sent
     bool sendExitPacket(Entry& entry);
@@ -28,7 +29,8 @@ public:
     private:
     static void handleOn();
     static void handleOff();
-    std::string entryToJson(Entry& data);
     WiFiClient& _wifiClient;
-    WebServer _server;
+    static WebServer _server;
+
+    std::string entryToJson(Entry& data);
 };

@@ -1,3 +1,4 @@
 pip~=25.0.1
 pillow~=11.2.1
 aiocoap~=0.4.14
+requests~=2.32.4

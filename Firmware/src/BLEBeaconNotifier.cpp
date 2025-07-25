@@ -88,7 +88,7 @@ void BLEBeaconNotifier::verifyConnectionState()
 }
 
 void BLEBeaconNotifier::loop() {
-    BLEScanResults results = _BLEScan->start(5, false);
+    BLEScanResults results = _BLEScan->start(3, false);
 
     for (int i = 0; i < results.getCount(); i++) {
         BLEAdvertisedDevice dev = results.getDevice(i);
