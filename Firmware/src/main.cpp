@@ -8,8 +8,8 @@
 // const char* ssid = "SM-G960W9028";
 // const char* password = "imzh7060";
 // Wifi settings
-const char*     SSID = "EasyAmongUs_24";
-const char*     PASSWORD = "RedPantsAmigo1";
+const char*     SSID = "Famille Lavallee";
+const char*     PASSWORD = "Solstice123!";
 
 // Time settings
 const char* ntpServer = "pool.ntp.org";

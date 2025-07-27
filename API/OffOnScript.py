@@ -1,12 +1,14 @@
 import requests
-devicveIP = "192.168.0.24"
+import os
+
+deviceIP = os.getenv("DEVICE_IP")
 
 
 def TurnOn():
-    response = requests.get("http://" + devicveIP + ":80/on")
+    response = requests.get("http://" + deviceIP + ":80/on")
 
 def TurnOff():
-    response = requests.get("http://" + devicveIP + ":80/off")
+    response = requests.get("http://" + deviceIP + ":80/off")
 
 def main():
     TurnOn()

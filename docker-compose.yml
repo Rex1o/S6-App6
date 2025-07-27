@@ -1,0 +1,123 @@
+version: '3.8'
+
+networks:
+  app-network:
+    driver: bridge
+
+
+services:
+  broker:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto
+    ports:
+      - "1883:1883"   # Port MQTT
+      - "9001:9001"   # Port WebSocket
+    volumes:
+      - ./Broker/mosquitto/config:/mosquitto/config
+      - ./Broker/mosquitto/data:/mosquitto/data
+      - ./Broker/mosquitto/log:/mosquitto/log
+    networks:
+      - app-network
+
+
+  coap_server:
+    build:
+      context: ./CoAP_server
+      dockerfile: Dockerfile
+    container_name: coap_server
+    ports:
+      - "5683:5683/udp"  # Port CoAP
+    volumes:
+      - ./CoAP_server:/app
+    environment:
+      - DATABASE_PATH=/app/assurance_db.db
+    networks:
+      - app-network
+
+
+  control:
+    build:
+      context: ./API
+      dockerfile: Dockerfile
+    container_name: control
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./API:/app
+    environment:
+      - DEVICE_IP=192.168.0.61    # IP de l'ESP32
+      - DATABASE_NAME=main_db.db
+      - DATABASE_PATH=/app/main_db.db
+    depends_on:
+      - broker
+    networks:
+      - app-network
+
+
+  mqtt_app:
+    build:
+      context: ./MQTT_App
+      dockerfile: Dockerfile
+    container_name: mqtt_app
+    ports:
+      - "5004:5004"   # Port MQTT pour l'application MQTT
+    volumes:
+      - ./MQTT_App:/app
+    environment:
+      - DATABASE_NAME=sante_publique_db.db
+      - DATABASE_PATH=/app/sante_publique_db.db
+    depends_on:
+      - broker
+    networks:
+      - app-network
+
+
+  webapp1:
+    build:
+      context: ./WebApp1_main
+      dockerfile: Dockerfile
+    container_name: WebApp1_main
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./API/main_db.db:/app/main_db.db
+      - ./WebApp1_main:/app
+    environment:
+      - DATABASE_NAME=main_db.db
+      - DATABASE_PATH=/app/main_db.db
+    networks:
+      - app-network
+
+
+  webapp2:
+    build:
+      context: ./WebApp2_sp
+      dockerfile: Dockerfile
+    container_name: WebApp2_sp
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./MQTT_App/sante_publique_db.db:/app/sante_publique_db.db
+      - ./WebApp2_sp:/app
+    environment:
+      - DATABASE_NAME=sante_publique_db.db
+      - DATABASE_PATH=/app/sante_publique_db.db
+    networks:
+      - app-network
+
+
+  webapp3:
+    build:
+      context: ./WebApp3_ass
+      dockerfile: Dockerfile
+    container_name: WebApp3_ass
+    ports:
+      - "5003:5003"
+    volumes:
+      - ./CoAP_server/assurance_db.db:/app/assurance_db.db
+      - ./WebApp3_ass:/app
+    environment:
+      - DATABASE_NAME=assurance_db.db
+      - DATABASE_PATH=/app/assurance_db.db
+    networks:
+      - app-network

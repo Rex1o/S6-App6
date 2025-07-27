@@ -3,8 +3,8 @@
 #include <BLEAddress.h>
 #include <sstream>
 
-const uint8_t     HttpService::LED_GPIO = GPIO_NUM_25;
-const std::string HttpService::SERVER_IP =  "192.168.0.21:5000";
+const uint8_t     HttpService::LED_GPIO = GPIO_NUM_2;
+const std::string HttpService::SERVER_IP =  "192.168.0.62:5000";
 std::string HttpService::POST_EXIT_API_ROUTE =  "http://" + SERVER_IP + "/exit";
 std::string HttpService::POST_ENTRY_API_ROUTE =  "http://" + SERVER_IP + "/enter";
 const std::string HttpService::ROOM_ID = "4";
@@ -54,7 +54,7 @@ bool HttpService::sendEnterPacket(Entry& entry){
     int httpResponseCode = http.POST(message.c_str());
     if (httpResponseCode != 200 && httpResponseCode != 201 && httpResponseCode != 202)
     {
-        Serial.println("Failed to send Enter pakcet");
+        Serial.println("Failed to send Enter packet");
         return false;
     }
 
