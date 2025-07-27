@@ -87,11 +87,11 @@ std::string HttpService::entryToJson(Entry& data) {
 void HttpService::handleOn() {
     Serial.println("Admin ON signal received");
     digitalWrite(LED_GPIO, HIGH);
-    _server.send(200,"text/plain", "Success turned on");
+    _server.send(200, "text/plain", "Success turned on");
 }
 
 void HttpService::handleOff() {
     Serial.println("Admin OFF signal received");
     digitalWrite(LED_GPIO, LOW);
-    _server.send(200,"text/plain", "Success turned off");
+    _server.send(200, "text/plain", "Success turned off");
 }
