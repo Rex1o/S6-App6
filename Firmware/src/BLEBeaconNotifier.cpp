@@ -101,9 +101,7 @@ void BLEBeaconNotifier::loop() {
 
         int RSSI = (~(int8_t)payload[24] + 1) * -1; // RSSI
 
-        int txPower = dev.getTXPower();      // RSSI calculated from the bluetooth module
-
-        int RSSILib = dev.getRSSI();
+        int txPower = dev.getTXPower(); // RSSI calculated from the bluetooth module
 
         float distance = estimateDistance(txPower, RSSI);
 
