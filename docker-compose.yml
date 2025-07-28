@@ -45,7 +45,7 @@ services:
     volumes:
       - ./API:/app
     environment:
-      - DEVICE_IP=192.168.0.61    # IP de l'ESP32
+      - DEVICE_IP=192.168.82.105    # IP de l'ESP32
       - DATABASE_NAME=main_db.db
       - DATABASE_PATH=/app/main_db.db
     depends_on:

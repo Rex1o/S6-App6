@@ -4,7 +4,7 @@
 #include <sstream>
 
 const uint8_t     HttpService::LED_GPIO = GPIO_NUM_2;
-const std::string HttpService::SERVER_IP =  "192.168.0.62:5000";
+const std::string HttpService::SERVER_IP =  "192.168.82.21:5000";
 std::string HttpService::POST_EXIT_API_ROUTE =  "http://" + SERVER_IP + "/exit";
 std::string HttpService::POST_ENTRY_API_ROUTE =  "http://" + SERVER_IP + "/enter";
 const std::string HttpService::ROOM_ID = "4";
