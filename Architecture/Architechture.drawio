@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.4 Chrome/138.0.7204.97 Electron/37.2.1 Safari/537.36" version="28.0.4" pages="2">
   <diagram name="Architechture" id="oKtgyFVid0nO9BIiiak3">
-    <mxGraphModel dx="1464" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="971" dy="568" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -145,8 +145,13 @@
         <mxCell id="cgCbMoKA9UfazJtL4Jco-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="cgCbMoKA9UfazJtL4Jco-56" target="cgCbMoKA9UfazJtL4Jco-57">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="cgCbMoKA9UfazJtL4Jco-62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;endArrow=none;endFill=0;" edge="1" parent="1" source="cgCbMoKA9UfazJtL4Jco-56" target="cgCbMoKA9UfazJtL4Jco-44">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="cgCbMoKA9UfazJtL4Jco-62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;endArrow=none;endFill=0;strokeWidth=2;" edge="1" parent="1" source="cgCbMoKA9UfazJtL4Jco-57" target="cgCbMoKA9UfazJtL4Jco-44">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="985" y="470" />
+              <mxPoint x="727" y="470" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="cgCbMoKA9UfazJtL4Jco-56" value="Serveur CoAP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="840" y="522" width="60" height="42" as="geometry" />
@@ -209,6 +214,14 @@
         </mxCell>
         <mxCell id="cgCbMoKA9UfazJtL4Jco-133" value="" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/Docker.svg;" vertex="1" parent="1">
           <mxGeometry x="610" y="562" width="36.59" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="STMqHxjim-T53AzHgMdt-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" edge="1" parent="1" source="cgCbMoKA9UfazJtL4Jco-42" target="cgCbMoKA9UfazJtL4Jco-51">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="725" y="300" />
+              <mxPoint x="985" y="300" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
