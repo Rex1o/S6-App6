@@ -2,6 +2,14 @@
 
 # Architecture
 
+## Systèmes
+
+![image](./Architecture/Architechture.png)
+
+## Bases de donneés
+
+![image](./Architecture/Databases.png)
+
 
 # Lancement
 
